@@ -88,6 +88,8 @@ pip install -r requirements.txt
 
 Place your churn CSV in the `data/` folder. The pipeline expects a target column indicating churn (1) or not (0), and any identifier columns you want excluded.
 
+If you are re-running the pipeline with a new dataset, delete any existing files inside `data/`, `models/`, and `outputs/` first, keeping only your new CSV in `data/`. This avoids mixing artifacts from a previous run with the new one.
+
 ### 5. Run the pipeline
 
 Open `notebooks/quickstart.ipynb` and run all cells in order.
