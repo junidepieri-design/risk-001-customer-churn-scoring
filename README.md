@@ -3,7 +3,7 @@
 
 A production-grade pipeline for predicting customer churn in banking, with automated feature engineering, Bayesian hyperparameter optimization, and SHAP-based explainability.
 
-Built to work with any tabular churn dataset. Swap the CSV, adjust the target column, and the pipeline handles the rest — from raw data to a scored, explainable model.
+Built to work with any tabular churn dataset. Swap the CSV, adjust the target column, and the pipeline handles the rest from raw data to a scored, explainable model.
 
 ![Architecture Churn Scoring Pipeline](Architecture%20Churn%20Scoring%20Pipeline.png)
 
@@ -11,7 +11,7 @@ Built to work with any tabular churn dataset. Swap the CSV, adjust the target co
 
 ## What This Solves
 
-Banks lose customers every day without knowing who is at risk or why. This pipeline scores every customer by churn probability, ranks them by risk, and explains the exact factors driving each prediction — so retention teams know who to prioritize and what to address.
+Banks lose customers every day without knowing who is at risk or why. This pipeline scores every customer by churn probability, ranks them by risk, and explains the exact factors driving each prediction so retention teams know who to prioritize and what to address.
 
 ---
 
@@ -151,13 +151,13 @@ Every step saves its output to `data/`, `models/`, or `outputs/`, so the pipelin
 
 ## Key Design Decisions
 
-**Automatic feature engineering** — Instead of hand-crafting features for one specific dataset, the pipeline uses PolynomialFeatures to generate candidate interactions automatically, then lets RandomForest importance decide which ones matter. This is what makes the pipeline reusable across different churn datasets without code changes.
+**Automatic feature engineering**: Instead of hand-crafting features for one specific dataset, the pipeline uses PolynomialFeatures to generate candidate interactions automatically, then lets RandomForest importance decide which ones matter. This is what makes the pipeline reusable across different churn datasets without code changes.
 
-**Bayesian optimization over grid search** — Optuna finds strong hyperparameters in far fewer trials than exhaustive search. The search space lives in `config/xgb_params.py`, so tuning depth is a configuration change, not a code change.
+**Bayesian optimization over grid search**: Optuna finds strong hyperparameters in far fewer trials than exhaustive search. The search space lives in `config/xgb_params.py`, so tuning depth is a configuration change, not a code change.
 
-**KS and LIFT over accuracy** — Churn datasets are inherently imbalanced. Accuracy is misleading when 80% of customers do not churn. KS measures how well the model separates churners from non-churners. LIFT tells the business exactly how much better than random the model performs at each decile — the metric retention teams actually use to prioritize outreach.
+**KS and LIFT over accuracy**: Churn datasets are inherently imbalanced. Accuracy is misleading when 80% of customers do not churn. KS measures how well the model separates churners from non-churners. LIFT tells the business exactly how much better than random the model performs at each decile — the metric retention teams actually use to prioritize outreach.
 
-**Saved artifacts, not just the model** — The label encoders, scaler, polynomial transformer, and selected feature list are all saved during training. This is what allows `test_predict.ipynb` to score new customers using the exact same transformations applied during training, without retraining or refitting anything.
+**Saved artifacts, not just the model**: The label encoders, scaler, polynomial transformer, and selected feature list are all saved during training. This is what allows `test_predict.ipynb` to score new customers using the exact same transformations applied during training, without retraining or refitting anything.
 
 ---
 
