@@ -5,6 +5,8 @@ A production-grade pipeline for predicting customer churn in banking, with autom
 
 Built to work with any tabular churn dataset. Swap the CSV, adjust the target column, and the pipeline handles the rest — from raw data to a scored, explainable model.
 
+![Architecture Churn Scoring Pipeline](Architecture%20Churn%20Scoring%20Pipeline.png)
+
 ---
 
 ## What This Solves
